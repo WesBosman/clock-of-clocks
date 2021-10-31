@@ -10,6 +10,8 @@ const horizontal = [0, 180]
 const vertical = [90, 270]
 const diagonal = [135, 135]
 
+console.log("App.jsx loaded");
+
 // A nested array of the angles to make the digits
 // these need to be transposed before using them.
 const digits = [
@@ -111,6 +113,9 @@ const transpose = (a) => {
   });
 }
 
+// Do the transpose once rather than 
+// calling transpose everytime we need to get the angles
+// from the array
 const transposedDigits = digits.map(x => transpose(x));
 
 /**
@@ -152,8 +157,8 @@ function App() {
         let [angle1, angle2] = d[i][j]
         let [nextAngle1, nextAngle2] = nextD[i][j];
 
-        console.log("Angle 1: ", angle1, " New Angle 1: ", nextAngle1);
-        console.log("Angle 2: ", angle2, " New Angle 2: ", nextAngle2)
+        // console.log("Angle 1: ", angle1, " New Angle 1: ", nextAngle1);
+        // console.log("Angle 2: ", angle2, " New Angle 2: ", nextAngle2);
         drawClock(context, x, y, radius - spacing, angle1, angle2);
       }
     }
@@ -216,7 +221,7 @@ function App() {
         draw(canvas, context, frameCount)
         animationFrameId = window.requestAnimationFrame(render)
       }
-      setInterval(render, 500)
+      setInterval(render, 1000)
       
       return () => {
         window.cancelAnimationFrame(animationFrameId)
